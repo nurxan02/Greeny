@@ -1,0 +1,246 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GrennyWebApplication.Services.Abstracts
+@inject IUserService userService
+@using GrennyWebApplication.Areas.Client.ViewComponents;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Greeny Admin - Powered by Metrica </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/admin/assets/images/favicon.ico" asp-append-version="true">
+
+    <!-- Plugin css -->
+    @RenderSection("plugin_styles", required: false)
+
+    <!-- App css -->
+    <link href="~/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <link href="~/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <link href="~/admin/assets/css/app.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+
+    <!-- Custom css -->
+    @RenderSection("styles", required: false)
+</head>
+
+<body id="body">
+    <!-- leftbar-tab-menu -->
+    <div class="leftbar-tab-menu">
+        <div class="main-icon-menu">
+            <a asp-controller="dashboard" asp-action="index" class="logo logo-metrica d-block text-center">
+                <span>
+                    <img src="~/admin/assets/images/logo-sm.png" alt="logo-small" class="logo-sm" asp-append-version="true">
+                </span>
+            </a>
+            <div class="main-icon-menu-body">
+                <div class="position-reletive h-100" data-simplebar style="overflow-x: hidden;">
+                    <ul class="nav nav-tabs" role="tablist" id="tab-menu">
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard" data-bs-trigger="hover">
+                            <a href="#MetricaDashboard" id="dashboard-tab" class="nav-link">
+                                <i class="ti ti-smart-home menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!--end /div-->
+            </div><!--end main-icon-menu-body-->
+
+        </div>
+        <!--end main-icon-menu-->
+
+        <div class="main-menu-inner">
+            <!-- LOGO -->
+            <!--end logo-->
+            <div class="menu-body navbar-vertical tab-content" data-simplebar>
+                <div id="MetricaDashboard" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                     aria-labelledby="dasboard-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">Dashboard</h6>
+                    </div>
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a asp-route="admin-plant-list" class="nav-link">Plants</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-slider-list" class="nav-link">Slider</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-brand-list" class="nav-link">Brands</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-discount-list" class="nav-link">Discount</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-category-list" class="nav-link">Category</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-tag-list" class="nav-link">Tag</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-feedback-list" class="nav-link">FeedBack</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-user-list" class="nav-link">User</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-order-list" class="nav-link">Order</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-contact-list" class="nav-link">Contact</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-about-list" class="nav-link">About</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-blog-list" class="nav-link">Blog</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-blogcategory-list" class="nav-link">Blog Category</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-blogtag-list" class="nav-link">Blog Tag</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-teammember-list" class="nav-link">Team Members</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a asp-route="admin-city-list" class="nav-link"> Cities</a>
+                        </li><!--end nav-item-->
+
+                    </ul><!--end nav-->
+                </div><!-- end Dashboards -->
+            </div>
+            <!--end menu-body-->
+        </div><!-- end main-menu-inner-->
+    </div>
+    <!-- end leftbar-tab-menu-->
+    <!-- Top Bar Start -->
+    <div class="topbar">
+        <!-- Navbar -->
+        <nav class="navbar-custom" id="navbar-custom">
+            <ul class="list-unstyled topbar-nav float-end mb-0">
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="false" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <img src="~/client/assets/images/user.png" alt="profile-user" class="rounded-circle me-2 thumb-sm" asp-append-version="true" />
+                            <div>
+                                <small class="d-none d-md-block font-11">Current Client :</small>
+                                @if (userService.IsAuthenticated)
+                                {
+                                    <span class="d-none d-md-block fw-semibold font-12">
+
+                                        @userService.CurrentUser.FirstName  @userService.CurrentUser.LastName
+                                        <i class="mdi mdi-chevron-down"></i>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" asp-route="client-auth-logout"><i class="ti ti-power font-16 me-1 align-text-bottom"></i> Logout</a>
+                    </div>
+                </li><!--end topbar-profile-->
+
+            </ul><!--end topbar-nav-->
+
+            <ul class="list-unstyled topbar-nav mb-0">
+                <li>
+                    <button class="nav-link button-menu-mobile nav-icon" id="togglemenu">
+                        <i class="ti ti-menu-2"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- end navbar-->
+    </div>
+    <!-- Top Bar End -->
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+            <div class="container-fluid">
+
+                @RenderBody()
+
+            </div><!-- container -->
+            <!--Start Rightbar-->
+            <!--Start Rightbar/offcanvas-->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                    <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <h6>Account Settings</h6>
+                    <div class="p-2 text-start mt-3">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch1">
+                            <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                            <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="settings-switch3">
+                            <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                        </div><!--end form-switch-->
+                    </div><!--end /div-->
+                    <h6>General Settings</h6>
+                    <div class="p-2 text-start mt-3">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch4">
+                            <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                            <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="settings-switch6">
+                            <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                        </div><!--end form-switch-->
+                    </div><!--end /div-->
+                </div><!--end offcanvas-body-->
+            </div>
+            <!--end Rightbar/offcanvas-->
+            <!--end Rightbar-->
+            <!--Start Footer-->
+            <!-- Footer Start -->
+            <footer class="footer text-center text-sm-start">
+                &copy; <script>
+                           document.write(new Date().getFullYear())
+                </script> Metrica <span class="text-muted d-none d-sm-inline-block float-end">
+                    Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes
+                </span>
+            </footer>
+            <!-- end Footer -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+    <!-- Javascript  -->
+    <!-- Plugin Js -->
+    @RenderSection("plugin_scripts", required: false)
+
+    <!-- App js -->
+    <script src="~/admin/assets/js/app.js" asp-append-version="true"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+    <script src="~/admin/assets/pages/hubs/alert-handler.js" asp-append-version="true"></script>
+
+
+    <!-- Custom Js -->
+    @RenderSection("scripts", required: false)
+</body>
+<!--end body-->
+</html>
